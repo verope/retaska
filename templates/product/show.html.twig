@@ -30,9 +30,19 @@
         </tbody>
     </table>
 
-    <a href="{{ path('product_index') }}">back to list</a>
 
-    <a href="{{ path('product_edit', {'id': product.id}) }}">edit</a>
+    <br>
+    <hr>
 
-    {{ include('product/_delete_form.html.twig') }}
+    <table>
+        <tr>
+            <td><a class="btn btn-success" href="{{ path('product_edit', {'id': product.id}) }}">edit</a></td>
+            <td>&emsp;</td>
+            <td>{{ include('product/_delete_form.html.twig') }}</td>
+            <td>&emsp;</td>
+            <td><a class="btn btn-secondary"  href="{{ path('product_index') }}">back to list</a></td>
+        </tr>
+    </table>
+
+    
 {% endblock %}

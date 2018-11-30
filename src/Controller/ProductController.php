@@ -45,6 +45,16 @@ class ProductController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+   /**
+     * @Route("/show_all", name="product_show_all", methods="GET|POST")
+     */
+    public function show_all(Product $product): Response
+    {
+
+        return $this->render('product/show_all.html.twig', [
+            'products' => $product -> findAll(),
+        ]);
+    }
 
     /**
      * @Route("/{id}", name="product_show", methods="GET")

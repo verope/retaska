@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block body %}
+
+
+<div class="mt-4">
+    <img src="{{ asset('retaska_logo.png') }}", align="middle" />
+</div>
+
+<div class="jumbotron jumbotron-fluid bg-white">
+  <div class="container">
+    <h1 class="display-4">Save the whales!</h1>
+    <p class="lead">It's time to stop watching the environment get filled up with our trash which whales end up eating and killing themselves with.</p>
+    
+    
+        <a class="btn btn-secondary"  href="{{ path('homepage_products') }}">Show products</a>
+
+  </div>
+</div>
+
+
+{% endblock %}
+

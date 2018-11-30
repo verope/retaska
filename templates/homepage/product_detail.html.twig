@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product detail{% endblock %}
+
+{% block body %}
+    <h1>Product detail</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <td>{{ product.name }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ product.description }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>${{ product.price }}</td>
+            </tr>
+            <tr>
+                <th>Items in stock</th>
+                <td>{{ product.inStockCount }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <hr>
+
+    <table>
+        <tr>
+
+            <td><a class="btn btn-secondary"  href="{{ path('homepage_products') }}">back to list</a></td>
+        </tr>
+    </table>
+
+    
+{% endblock %}
