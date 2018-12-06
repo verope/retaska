@@ -4,25 +4,18 @@
 
 {% block body %}
     <h1>Our whalesome bags</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Actions</th>
-            </tr>
-{% for product in products %}
-    <tr>
-    <td>{{ product.name }}</td>
-    <td>${{ product.price }}</td>
-    <td>
-    <a class="btn btn-primary"  href="{{ path('product_detail', {'id': product.id}) }}">Detail</a>
-    </td>
-    </tr>
-{% endfor %}
-        </tbody>
-    </table>
+    
+    <div class="wrapper">
+        {% for product in products %}
+        <div class="col-sm">
+        <p>{{ product.name }}</p>
+        <p>${{ product.price }}</p>
+        <a class="btn btn-primary"  href="{{ path('product_detail', {'id': product.id}) }}">Detail</a>
+        </div>
+        {% endfor %}
+      
+    </div>
+    <hr>
 
     <a class="btn btn-secondary"  href="{{ path('homepage_index') }}">back to homepage</a>
 
