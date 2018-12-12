@@ -3,12 +3,17 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PurchaseOrderRepository")
  */
 class PurchaseOrder
 {
+    const STATUS_NEW = 'new';
+    const STATUS_SHIPPED = 'shipped';
+    const STATUS_DELIVERED = 'delivered';
+    
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -18,16 +23,22 @@ class PurchaseOrder
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\GreaterThanOrEqual(1)    
      */
     private $numberOfUnits;
 
     /**
      * @ORM\Column(type="string", length=255)
-     */
+     * @Assert\Email(
+     *     message = "The email '{{ value }}' is not a valid email.",
+     *     checkMX = true
+     * ) 
+     **/
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
      */
     private $phoneNumber;
 
@@ -48,7 +59,11 @@ class PurchaseOrder
 
     /**
      * @ORM\Column(type="string", length=255)
-     */
+     * @Assert\Type(
+     *     type="numeric",
+     *     message="Please enter a valid postcode - do not include space between numbers."
+     * )     
+     **/
     private $postcode;
 
     /**

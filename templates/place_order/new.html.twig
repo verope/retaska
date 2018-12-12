@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Place your order{% endblock %}
+
+{% block body %}
+    <h1>Place your order</h1>
+
+    {{ include('place_order/_form.html.twig') }}
+
+    <a href="{{ path('homepage_products') }}">back to list</a>
+{% endblock %}

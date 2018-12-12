@@ -88,4 +88,11 @@ class Product
 
         return $this;
     }
+    
+        public function decreaseInStockCount(int $decreaseAmount): self
+    {
+        $this->inStockCount = $this->inStockCount - $decreaseAmount;
+
+        return $this;
+    }
 }

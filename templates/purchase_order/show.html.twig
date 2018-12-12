@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PurchaseOrder{% endblock %}
+
+{% block body %}
+    <h1>PurchaseOrder</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ purchase_order.id }}</td>
+            </tr>
+            <tr>
+                <th>NumberOfUnits</th>
+                <td>{{ purchase_order.numberOfUnits }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ purchase_order.email }}</td>
+            </tr>
+            <tr>
+                <th>PhoneNumber</th>
+                <td>{{ purchase_order.phoneNumber }}</td>
+            </tr>
+            <tr>
+                <th>FirstName</th>
+                <td>{{ purchase_order.firstName }}</td>
+            </tr>
+            <tr>
+                <th>LastName</th>
+                <td>{{ purchase_order.lastName }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ purchase_order.city }}</td>
+            </tr>
+            <tr>
+                <th>Postcode</th>
+                <td>{{ purchase_order.postcode }}</td>
+            </tr>
+            <tr>
+                <th>StreetAddress</th>
+                <td>{{ purchase_order.streetAddress }}</td>
+            </tr>
+            <tr>
+                <th>StreetNumber</th>
+                <td>{{ purchase_order.streetNumber }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ purchase_order.note }}</td>
+            </tr>
+            <tr>
+                <th>CreatedDate</th>
+                <td>{{ purchase_order.createdDate ? purchase_order.createdDate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ purchase_order.status }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('purchase_order_index') }}">back to list</a>
+
+    <a href="{{ path('purchase_order_edit', {'id': purchase_order.id}) }}">edit</a>
+
+    {{ include('purchase_order/_delete_form.html.twig') }}
+{% endblock %}

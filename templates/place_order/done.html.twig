@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Thank you for your order!{% endblock %}
+
+{% block body %}
+    <h1>Thank you very much for your order. It will be shipped to you ASAP. </h1>
+    <p>Disclaimer: No whales will be killed during this process.</p>
+
+
+    <a href="{{ path('homepage_products') }}">back to products</a>
+{% endblock %}
