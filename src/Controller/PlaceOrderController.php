@@ -24,16 +24,16 @@ class PlaceOrderController extends AbstractController
         $purchaseOrder = new PurchaseOrder();
         $form = $this->createForm(PlaceOrderType::class, $purchaseOrder);
         $form->handleRequest($request); 
-
+        
         if ($form->isSubmitted() && $form->isValid() && $product->getInStockCount() > 0) {
             $em = $this->getDoctrine()->getManager();
             $purchaseOrder->setCreatedDate(new \DateTime);
             $purchaseOrder->setStatus(PurchaseOrder::STATUS_NEW);
-            $product->decreaseInStockCount($product->getInStockCount());
+            $product->decreaseInStockCount($purchaseOrder->getNumberOfUnits());
             $em->persist($purchaseOrder);
             $em->flush();
 
-            return $this->redirectToRoute('place_order_done');
+            return $this->redirectToRoute('place_order_done', ['id' => $purchaseOrder->getId()]);
         }
 
         return $this->render('place_order/new.html.twig', [
@@ -44,7 +44,7 @@ class PlaceOrderController extends AbstractController
     
     
     /**
-     * @Route("/done", name="place_order_done", methods="GET")
+     * @Route("/done/{id}", name="place_order_done", methods="GET")
      */
     public function show(PurchaseOrder $purchaseOrder): Response
     {
