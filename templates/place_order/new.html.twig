@@ -8,4 +8,50 @@
     {{ include('place_order/_form.html.twig') }}
 
     <a href="{{ path('homepage_products') }}">back to list</a>
+
+<h5 class="card-title">Objednane produkty</h5>
+<p class = "card-text">
+    
+<span id="productName" class="card-body">{{ product.name }}</span>
+<span id="price" class="card-bodey">  {{ product.price }} </span>
+<span id="totalPrice" class="card-bodey"></span>
+
+<span id="delivery"> {{ purchase_order.transportation }} </span>
+
+
+</p>
+
 {% endblock %}
+
+
+
+
+{% block javascripts %}
+<script>
+
+$('#place_order_numberOfUnits').on('keyup', function(e) {
+    var itemsCount = $('#place_order_numberOfUnits').val();
+    var price = $('#price').text();   
+    var total = itemsCount*price;
+    var totalPrice = $('#totalPrice').text(total);
+    
+    var code = $('#place_order_paymentMethod option:selected').val();
+    var surcharge = $('#place_order_paymentMethod option:selected').attr('data-price');
+    
+    console.log(code);
+    console.log(surcharge);
+    console.log(totalPrice);
+    var totalPrice2 = parseInt(totalPrice) + parseInt(surcharge);
+    console.log(totalPrice2);
+});
+
+
+
+</script>
+{% endblock %}
+
+
+
+
+
+

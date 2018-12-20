@@ -38,12 +38,22 @@ class PlaceOrderType extends AbstractType
             'multiple'=> false,
             'expanded' => false
             ])
+            /*
             ->add('paymentMethod', EntityType::class, [
             'class' => PaymentMethod::class,
             'choice_label' => 'type',
             'multiple'=> false,
             'expanded' => true
             ])
+            */
+            ->add('paymentMethod', EntityType::class, [
+            'class' => PaymentMethod::class,
+            'choice_label' => 'type',
+            'choice_attr' => function($paymentMethod) {
+                return ['data-price' => $paymentMethod->getSurcharge()];
+            }
+            ])
+            
         ;
     }
 

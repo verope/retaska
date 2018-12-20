@@ -38,6 +38,7 @@ class PlaceOrderController extends AbstractController
 
         return $this->render('place_order/new.html.twig', [
             'purchase_order' => $purchaseOrder,
+            'product' => $product,
             'form' => $form->createView(),
         ]);
     }
