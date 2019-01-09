@@ -12,7 +12,7 @@
         <p>${{ product.price }}</p>
         <a class="btn btn-primary"  href="{{ path('product_detail', {'id': product.id}) }}">Detail</a>
         <td>&emsp;</td>
-        <a class="btn btn-primary"  href="{{ path('place_order_new', {'id': product.id}) }}">Objednat</a>
+        <a class="btn btn-primary"  href="{{ path('place_order_new', {'id': product.id}) }}">Order</a>
         
         </div>
         {% endfor %}

@@ -3,48 +3,88 @@
 {% block title %}Place your order{% endblock %}
 
 {% block body %}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-7">
+
     <h1>Place your order</h1>
 
     {{ include('place_order/_form.html.twig') }}
 
     <a href="{{ path('homepage_products') }}">back to list</a>
 
-<h5 class="card-title">Objednane produkty</h5>
-<p class = "card-text">
-    
-<span id="productName" class="card-body">{{ product.name }}</span>
-<span id="price" class="card-bodey">  {{ product.price }} </span>
-<span id="totalPrice" class="card-bodey"></span>
-
-<span id="delivery"> {{ purchase_order.transportation }} </span>
-
-
-</p>
-
+    </div>
+    <div class="col">
+    <div class="position-fixed">
+        <div class="card" style="width: 18rem;">
+        <div class="card-header">
+        Order:
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+            <b>Name of the product:</b>
+            <p><i><span id="productName" class="card-body">{{ product.name }}</span></i></p>
+            </li>
+            <li class="list-group-item">
+            <b>Price:</b>
+            <p><span id="price" class="card-bodey">  {{ product.price }} </span></p>
+            </li>
+            <li class="list-group-item">
+            <b>Total price:</b>
+            <p><span id="totalPrice" class="card-bodey"></span></p>
+            </li>
+        </ul>
+        </div>
+        </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
-
-
 
 
 {% block javascripts %}
 <script>
 
-$('#place_order_numberOfUnits').on('keyup', function(e) {
-    var itemsCount = $('#place_order_numberOfUnits').val();
-    var price = $('#price').text();   
-    var total = itemsCount*price;
-    var totalPrice = $('#totalPrice').text(total);
+
+$('#place_order_numberOfUnits').on('change', function(e) {
+    let itemsCount = $('#place_order_numberOfUnits').val();
+    let price = $('#price').text();
+    let productPriceTotal = itemsCount*price;
     
-    var code = $('#place_order_paymentMethod option:selected').val();
-    var surcharge = $('#place_order_paymentMethod option:selected').attr('data-price');
+    let surcharge = $('#place_order_paymentMethod option:selected').attr('data-price');
     
-    console.log(code);
-    console.log(surcharge);
-    console.log(totalPrice);
-    var totalPrice2 = parseInt(totalPrice) + parseInt(surcharge);
-    console.log(totalPrice2);
+    let transportationPrice = $('#place_order_transportation option:selected').attr('transp-price');
+    
+    let total = parseInt(productPriceTotal) + parseInt(surcharge) + parseInt(transportationPrice);
+    let totalPrice = $('#totalPrice').text(total);
 });
 
+$('#place_order_paymentMethod').on('change', function(e) {
+    let surcharge = $('#place_order_paymentMethod option:selected').attr('data-price');
+    
+    let itemsCount = $('#place_order_numberOfUnits').val();
+    let price = $('#price').text();
+    let productPriceTotal = itemsCount*price;
+    
+    let transportationPrice = $('#place_order_transportation option:selected').attr('transp-price');    
+    
+    let total = parseInt(productPriceTotal) + parseInt(surcharge) + parseInt(transportationPrice);
+    let totalPrice = $('#totalPrice').text(total);
+});
+
+$('#place_order_transportation').on('change', function(e) {
+    let transportationPrice = $('#place_order_transportation option:selected').attr('transp-price');
+    
+    let itemsCount = $('#place_order_numberOfUnits').val();
+    let price = $('#price').text();
+    let productPriceTotal = itemsCount*price;
+    
+    let surcharge = $('#place_order_paymentMethod option:selected').attr('data-price');   
+    
+    let total = parseInt(productPriceTotal) + parseInt(surcharge) + parseInt(transportationPrice);
+    let totalPrice = $('#totalPrice').text(total);
+});
 
 
 </script>

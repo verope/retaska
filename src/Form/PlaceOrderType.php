@@ -35,9 +35,9 @@ class PlaceOrderType extends AbstractType
             ->add('transportation', EntityType::class, [
             'class' => Transportation::class,
             'choice_label' => 'type',
-            'multiple'=> false,
-            'expanded' => false
-            ])
+            'choice_attr' => function($transportation){
+                return ['transp-price' => $transportation->getPrice()];
+                }])
             /*
             ->add('paymentMethod', EntityType::class, [
             'class' => PaymentMethod::class,
